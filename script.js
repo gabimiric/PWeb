@@ -31,6 +31,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// FAQ Accordion Logic
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const question = item.querySelector('.faq-question');
+
+  question.addEventListener('click', () => {
+    // Close other items
+    faqItems.forEach(otherItem => {
+      if (otherItem !== item) {
+        otherItem.classList.remove('active');
+      }
+    });
+
+    // Toggle current item
+    item.classList.toggle('active');
+  });
+});
+
+// Add some fun animations when scrolling
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
 const observer = new IntersectionObserver(function(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
