@@ -1,4 +1,4 @@
-# 🚀 PumpCoin - Satirical Crypto Landing Page
+# 🚀 [PumpCoin](https://pumpcoin-5cy2ln7m8-gabimirics-projects.vercel.app) - Satirical Crypto Landing Page
 ## Lab 2 - Web Programming - Miricinschi Gabriel
 
 A satirical landing page parodying cryptocurrency scams and pump-and-dump schemes. Created for educational purposes.
