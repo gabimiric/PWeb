@@ -3,12 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My landing page</title>
+    <title>PumpCoin</title>
     <!-- CHANGE THESE VALUES -->
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- ADD YOUR CODE HERE -->
+    <!-- Warning Modal -->
+    <div id="warningModal" class="modal">
+      <div class="modal-content">
+        <h2>⚠️ SATIRE WARNING ⚠️</h2>
+        <p>This website is a <strong>JOKE</strong> and parody of cryptocurrency scams.</p>
+        <p><strong>DO NOT</strong> send any money or cryptocurrency to anyone.</p>
+        <p>This is purely educational and satirical in nature.</p>
+        <button id="acknowledgeBtn" class="btn-primary">I Understand, This is a Joke</button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">🚀 PumpCoin</div>
+        <ul class="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#social-proof">Reviews</a></li>
+          <li><a href="#pricing">Invest</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="glitch" data-text="PUMPCOIN">PUMPCOIN</h1>
+          <p class="tagline">The Revolutionary Crypto That Will Definitely Make You Rich*</p>
+          <p class="disclaimer">*Results not guaranteed, typical, or even possible</p>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-value">∞%</div>
+              <div class="stat-label">ROI Potential**</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">ZERO</div>
+              <div class="stat-label">Actual Value</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">100%</div>
+              <div class="stat-label">Unreal</div>
+            </div>
+          </div>
+
+          <div class="hero-text">
+            <h2>Why PumpCoin is "Better" Than Bitcoin</h2>
+            <ul class="features">
+              <li>✨ <strong>No blockchain</strong> - Why complicate things?</li>
+              <li>🎯 <strong>No actual technology</strong> - Just vibes and emojis</li>
+              <li>🚀 <strong>Guaranteed to go "to the moon"</strong> - (Figuratively, legally speaking)</li>
+              <li>💎 <strong>Celebrity endorsements</strong> - From people who definitely exist</li>
+              <li>🎪 <strong>Community driven</strong> - By confusion and FOMO</li>
+              <li>⚡ <strong>Instant transactions</strong> - Because we don't actually process anything</li>
+            </ul>
+          </div>
+
+          <a href="#pricing" class="btn-cta">INVEST NOW 🤑</a>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
   </body>
 </html>
