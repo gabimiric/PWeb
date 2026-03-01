@@ -17,6 +17,10 @@
         <p>This is purely educational and satirical in nature.</p>
         <footer>
           <button id="acknowledgeBtn" class="btn-primary">I Understand, This is a Joke</button>
+          <div class="modal-slider-wrapper">
+            <p class="slider-hint">Slide to confirm you understand</p>
+            <input type="range" id="acknowledgeSlider" min="0" max="100" value="0" class="modal-slider" />
+          </div>
         </footer>
       </article>
     </dialog>
@@ -26,6 +30,11 @@
       <ul>
         <li><span class="logo">🚀 PumpCoin</span></li>
       </ul>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="#hero">Home</a></li>
         <li><a href="#social-proof">Reviews</a></li>
@@ -69,7 +78,6 @@
               <li>⚡ <strong>Instant transactions</strong> - Because we don't actually process anything</li>
             </ul>
           </div>
-
           <a href="#pricing" class="btn-cta" role="button">INVEST NOW 🤑</a>
         </div>
       </div>

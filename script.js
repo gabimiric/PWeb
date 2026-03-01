@@ -11,6 +11,21 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.close();
   });
 
+  // Mobile: slide-to-confirm — closes modal when dragged to end, snaps back otherwise
+  var acknowledgeSlider = document.getElementById('acknowledgeSlider');
+
+  acknowledgeSlider.addEventListener('input', function() {
+    if (parseInt(this.value) >= 95) {
+      modal.close();
+    }
+  });
+
+  acknowledgeSlider.addEventListener('change', function() {
+    if (parseInt(this.value) < 95) {
+      this.value = 0;
+    }
+  });
+
   // Prevent closing modal via Escape key
   modal.addEventListener('cancel', function(e) {
     e.preventDefault();
@@ -73,6 +88,23 @@ document.querySelectorAll('section').forEach(section => {
   observer.observe(section);
 });
 
+// Hamburger nav toggle (mobile only)
+document.addEventListener('DOMContentLoaded', function() {
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var navLinks = document.querySelector('.nav-links');
+
+  hamburgerBtn.addEventListener('click', function() {
+    navLinks.classList.toggle('nav-open');
+  });
+
+  // Close menu when any nav link is clicked
+  navLinks.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      navLinks.classList.remove('nav-open');
+    });
+  });
+});
+
 // Pumpy Mascot Logic - Image-based with interactions
 document.addEventListener('DOMContentLoaded', function() {
   const pumpy = document.getElementById('pumpy');
@@ -104,10 +136,12 @@ document.addEventListener('DOMContentLoaded', function() {
           { duration: 1600, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
         );
 
-        // Lock final position in inline styles once animation completes
+        // Lock final position in inline styles, then remove WAAPI animation
+        // so the compositor is freed and child pumpy-float CSS animation plays on all devices
         flyDown.onfinish = function() {
           pumpy.style.transform = 'translateY(0)';
           pumpy.style.opacity = '1';
+          flyDown.cancel();
         };
 
         // After fly-in finishes (1.6s), run the wave sequence
