@@ -136,12 +136,19 @@ document.addEventListener('DOMContentLoaded', function() {
           { duration: 1600, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
         );
 
-        // Lock final position in inline styles, then remove WAAPI animation
-        // so the compositor is freed and child pumpy-float CSS animation plays on all devices
+        // Cancel fly-in, lock opacity, then start float as a separate WAAPI animation
         flyDown.onfinish = function() {
-          pumpy.style.transform = 'translateY(0)';
           pumpy.style.opacity = '1';
           flyDown.cancel();
+
+          floatAnim = pumpy.animate(
+            [
+              { transform: 'translateY(0)' },
+              { transform: 'translateY(-15px)' },
+              { transform: 'translateY(0)' }
+            ],
+            { duration: 4000, easing: 'ease-in-out', iterations: Infinity }
+          );
         };
 
         // After fly-in finishes (1.6s), run the wave sequence
@@ -173,6 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Talking and bounce state
   var talkInterval = null;
   var isBouncing = false;
+  var isHovering = false;
+  var floatAnim = null;
 
   function startTalking() {
     var talkFrame = false;
@@ -191,13 +200,21 @@ document.addEventListener('DOMContentLoaded', function() {
     setActive(pumpyIdle);
   }
 
-  // Hover interactions
-  pumpy.addEventListener('mouseenter', function() {
+  // Hover interactions — mouse only (filter out touch to avoid false hover after tap)
+  pumpy.addEventListener('pointerenter', function(e) {
+    if (e.pointerType !== 'mouse') return;
+    isHovering = true;
+    // Clear any explicit hide so CSS :hover can show the message on desktop
+    var msgDiv = pumpy.querySelector('.pumpy-message');
+    msgDiv.style.opacity = '';
+    msgDiv.style.pointerEvents = '';
     if (isBouncing) return;
     startTalking();
   });
 
-  pumpy.addEventListener('mouseleave', function() {
+  pumpy.addEventListener('pointerleave', function(e) {
+    if (e.pointerType !== 'mouse') return;
+    isHovering = false;
     if (isBouncing) return;
     stopTalking();
   });
@@ -209,12 +226,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     stopTalking();
     isBouncing = true;
+    if (floatAnim) floatAnim.pause();
     activeImage.classList.add('pumpy-bouncing');
 
     setTimeout(function() {
       activeImage.classList.remove('pumpy-bouncing');
       isBouncing = false;
-      if (pumpy.matches(':hover')) {
+      if (floatAnim) floatAnim.play();
+      if (isHovering) {
         startTalking();
       } else {
         setActive(pumpyIdle);
@@ -269,11 +288,17 @@ document.addEventListener('DOMContentLoaded', function() {
     messageDiv.style.opacity = '1';
     messageDiv.style.pointerEvents = 'auto';
 
-    // Clear inline styles so CSS hover rule takes over again
+    // Hide after 3s. On mobile CSS :hover persists after tap — explicitly
+    // set opacity:0 when not truly hovering so the rule can't re-show it.
     setTimeout(function() {
-      messageDiv.style.opacity = '';
-      messageDiv.style.pointerEvents = '';
       pumpyBubble.textContent = "Hey! I'm Pumpy! 🚀 Ready to go to the moon?";
+      if (isHovering) {
+        messageDiv.style.opacity = '';
+        messageDiv.style.pointerEvents = '';
+      } else {
+        messageDiv.style.opacity = '0';
+        messageDiv.style.pointerEvents = 'none';
+      }
     }, 3000);
   }
 });

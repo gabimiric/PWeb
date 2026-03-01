@@ -811,7 +811,6 @@ article.team-member {
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-  animation: pumpy-float 4s ease-in-out infinite;
 }
 
 .pumpy-image.pumpy-active {
