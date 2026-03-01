@@ -1,37 +1,38 @@
 <!doctype html>
-<html>
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PumpCoin</title>
-    <!-- CHANGE THESE VALUES -->
-    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Warning Modal -->
-    <div id="warningModal" class="modal">
-      <div class="modal-content">
+    <dialog id="warningModal">
+      <article>
         <h2>⚠️ SATIRE WARNING ⚠️</h2>
         <p>This website is a <strong>JOKE</strong> and parody of cryptocurrency scams.</p>
         <p><strong>DO NOT</strong> send any money or cryptocurrency to anyone.</p>
         <p>This is purely educational and satirical in nature.</p>
-        <button id="acknowledgeBtn" class="btn-primary">I Understand, This is a Joke</button>
-      </div>
-    </div>
+        <footer>
+          <button id="acknowledgeBtn" class="btn-primary">I Understand, This is a Joke</button>
+        </footer>
+      </article>
+    </dialog>
 
     <!-- Navigation -->
     <nav class="navbar">
-      <div class="container">
-        <div class="logo">🚀 PumpCoin</div>
-        <ul class="nav-links">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#social-proof">Reviews</a></li>
-          <li><a href="#pricing">Invest</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
+      <ul>
+        <li><span class="logo">🚀 PumpCoin</span></li>
+      </ul>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#social-proof">Reviews</a></li>
+        <li><a href="#pricing">Invest</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
     </nav>
 
     <!-- Hero Section -->
@@ -69,7 +70,7 @@
             </ul>
           </div>
 
-          <a href="#pricing" class="btn-cta">INVEST NOW 🤑</a>
+          <a href="#pricing" class="btn-cta" role="button">INVEST NOW 🤑</a>
         </div>
       </div>
     </section>
@@ -78,25 +79,25 @@
     <section id="social-proof" class="social-proof">
       <div class="container">
         <h2>What Our "Investors" Are Saying</h2>
-        <div class="testimonials">
-          <div class="testimonial">
+        <div class="grid testimonials">
+          <article class="testimonial">
             <div class="stars">⭐⭐⭐⭐⭐</div>
             <p class="quote">"I have never been pumped or pumped so hard in my life!"</p>
             <p class="author">- Johnny Moneybanks</p>
             <p class="role">Professional Money Haver</p>
-          </div>
-          <div class="testimonial">
+          </article>
+          <article class="testimonial">
             <div class="stars">⭐⭐⭐⭐⭐</div>
             <p class="quote">"I invested $100 and now I'm broke. But at least I have the vibe of a millionaire!"</p>
             <p class="author">- Taik D. Bait</p>
             <p class="role">Crypto Enthusiast</p>
-          </div>
-          <div class="testimonial">
+          </article>
+          <article class="testimonial">
             <div class="stars">⭐⭐⭐⭐⭐</div>
             <p class="quote">"When risking, you can only lose 100% of your money, but can win 20000% instead."</p>
             <p class="author">- Robert House</p>
             <p class="role">Certified Moonshot Expert</p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -107,14 +108,14 @@
         <h2>Investment Packages</h2>
         <p class="section-subtitle">Choose Your Level of Financial Commitment to the Bit</p>
 
-        <div class="pricing-cards">
-          <div class="pricing-card">
+        <div class="grid pricing-cards">
+          <article class="pricing-card">
             <div class="pricing-icon">
-              <img src="src/pumper.jpg" alt="Pumper Tier">
+              <img src="src/pumper.jpg" alt="Pumper">
             </div>
             <div class="card-header">
-              <h3>Pumper Tier</h3>
-              <div class="price">$Any Amount</div>
+              <h3>PUMPER</h3>
+              <div class="price">$ANY AMOUNT</div>
             </div>
             <ul class="features-list">
               <li>✅ Invest whatever you want</li>
@@ -123,10 +124,10 @@
               <li>✅ A sense of adventure</li>
               <li>❌ Actual returns</li>
             </ul>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn-invest">INVEST NOW</a>
-          </div>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn-invest" role="button">INVEST NOW</a>
+          </article>
 
-          <div class="pricing-card featured">
+          <article class="pricing-card featured">
             <div class="badge">MOST POPULAR</div>
             <div class="pricing-icon">
               <img src="src/moon.jpg" alt="To The Moon">
@@ -142,10 +143,10 @@
               <li>✅ Priority customer support (also doesn't exist)</li>
               <li>❌ Still no actual returns</li>
             </ul>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn-invest">INVEST NOW</a>
-          </div>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn-invest" role="button">INVEST NOW</a>
+          </article>
 
-          <div class="pricing-card">
+          <article class="pricing-card">
             <div class="pricing-icon">
               <img src="src/diamond.jpg" alt="Diamond Baller">
             </div>
@@ -160,8 +161,8 @@
               <li>✅ A cool story for parties</li>
               <li>❌ Definitely no returns</li>
             </ul>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn-invest">INVEST NOW</a>
-          </div>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn-invest" role="button">INVEST NOW</a>
+          </article>
         </div>
 
         <p class="pricing-note">*** All "investments" are final and non-refundable because they're not real investments ***</p>
@@ -174,33 +175,33 @@
         <h2>Meet Our "Expert" Team</h2>
         <p class="section-subtitle">Highly Qualified Individuals Who Definitely Know What They're Doing</p>
 
-        <div class="team-grid">
-          <div class="team-member">
+        <div class="grid team-grid">
+          <article class="team-member">
             <div class="member-photo">
               <img src="src/logan.png" alt="Logan">
             </div>
             <h3>Paul Pogan</h3>
             <p class="role">Chief Marketting Officer</p>
             <p class="bio">Expert in clickbait and controversial marketing strategies.</p>
-          </div>
+          </article>
 
-          <div class="team-member">
+          <article class="team-member">
             <div class="member-photo">
               <img src="src/beast.png" alt="Jimmy">
             </div>
             <h3>Limmy Beast</h3>
             <p class="role">Chief Executive Officer</p>
             <p class="bio">Responsible for using his platform to promote questionable financial decisions.</p>
-          </div>
+          </article>
 
-          <div class="team-member">
+          <article class="team-member">
             <div class="member-photo">
               <img src="src/hawk.png" alt="Hailey">
             </div>
             <h3>Waliey Welsh</h3>
             <p class="role">VP of Relevancy</p>
             <p class="bio">Manages the relevance of all marketing messages to ensure they are as confusing and misleading as possible.</p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -277,7 +278,7 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <div class="footer-content">
+        <div class="grid footer-content">
           <div class="footer-section">
             <h4>🚀 PumpCoin</h4>
             <p>A Satirical Project</p>

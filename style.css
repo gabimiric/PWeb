@@ -11,10 +11,17 @@
   --danger-color: #ff3366;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Pico CSS variable overrides */
+[data-theme="dark"] {
+  --pico-primary: var(--primary-color);
+  --pico-primary-background: var(--primary-color);
+  --pico-primary-hover: var(--secondary-color);
+  --pico-primary-hover-background: var(--secondary-color);
+  --pico-background-color: var(--dark-bg);
+  --pico-color: var(--light-text);
+  --pico-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --pico-card-background-color: rgba(10, 14, 39, 0.5);
+  --pico-card-border-color: rgba(255, 107, 53, 0.3);
 }
 
 body {
@@ -31,57 +38,60 @@ body {
   padding: 0 20px;
 }
 
-/* ========== Warning Modal ========== */
-.modal {
-  display: flex;
-  position: fixed;
-  z-index: 10000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+/* ========== Warning Modal (Pico dialog) ========== */
+/* Pico uses dialog as the overlay and dialog > article as the card */
+#warningModal {
+  overflow: hidden !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+#warningModal article {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 3px solid var(--danger-color);
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255, 51, 102, 0.5);
+  max-width: 500px;
+  text-align: center;
+  animation: slideIn 0.5s ease;
+  color: var(--light-text);
+  overflow: hidden;
+}
+
+#warningModal::backdrop {
   background-color: rgba(0, 0, 0, 0.95);
-  align-items: center;
-  justify-content: center;
   animation: fadeIn 0.3s ease;
 }
 
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  padding: 40px;
-  border-radius: 15px;
-  max-width: 500px;
-  text-align: center;
-  border: 3px solid var(--danger-color);
-  box-shadow: 0 0 30px rgba(255, 51, 102, 0.5);
-  animation: slideIn 0.5s ease;
-}
-
-.modal-content h2 {
+#warningModal h2 {
   color: var(--danger-color);
   font-size: 2rem;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
 
-.modal-content p {
+#warningModal p {
   font-size: 1.1rem;
   margin-bottom: 15px;
   line-height: 1.8;
 }
 
-.modal-content strong {
+#warningModal strong {
   color: var(--danger-color);
+}
+
+#warningModal footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: transparent;
 }
 
 .btn-primary {
   background: var(--danger-color);
+  border-color: var(--danger-color);
   color: white;
-  border: none;
   padding: 15px 30px;
   font-size: 1.1rem;
   border-radius: 5px;
@@ -90,11 +100,13 @@ body {
   transition: all 0.3s ease;
   font-weight: bold;
   text-transform: uppercase;
+  width: auto;
 }
 
 .btn-primary:hover {
   background: #ff0044;
-  transform: scale(1.05);
+  border-color: #ff0044;
+  filter: brightness(1.15);
   box-shadow: 0 5px 20px rgba(255, 51, 102, 0.4);
 }
 
@@ -102,17 +114,11 @@ body {
 .navbar {
   background: rgba(10, 14, 39, 0.95);
   backdrop-filter: blur(10px);
-  padding: 20px 0;
+  padding: 20px max(20px, calc((100vw - 1200px) / 2));
   position: sticky;
   top: 0;
   z-index: 1000;
   border-bottom: 2px solid var(--primary-color);
-}
-
-.navbar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .logo {
@@ -125,8 +131,6 @@ body {
 }
 
 .nav-links {
-  display: flex;
-  list-style: none;
   gap: 30px;
 }
 
@@ -292,6 +296,13 @@ body {
   box-shadow: 0 10px 40px rgba(255, 107, 53, 0.6);
 }
 
+/* Reset Pico's default article styles for custom card components */
+article.testimonial,
+article.pricing-card,
+article.team-member {
+  margin-bottom: 0;
+}
+
 /* ========== Social Proof Section ========== */
 .social-proof {
   padding: 100px 0;
@@ -306,8 +317,6 @@ body {
 }
 
 .testimonials {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
 }
 
@@ -370,8 +379,6 @@ body {
 }
 
 .pricing-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   margin-bottom: 40px;
 }
@@ -510,8 +517,6 @@ body {
 }
 
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
   margin-top: 60px;
 }
@@ -648,8 +653,6 @@ body {
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 40px;
   margin-bottom: 40px;
 }
@@ -733,6 +736,10 @@ body {
   }
 
   .features {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials {
     grid-template-columns: 1fr;
   }
 

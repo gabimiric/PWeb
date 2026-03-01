@@ -3,17 +3,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('warningModal');
   const acknowledgeBtn = document.getElementById('acknowledgeBtn');
 
-  // Hide modal when user acknowledges
+  // Open modal using native dialog API
+  modal.showModal();
+
+  // Close modal when user acknowledges
   acknowledgeBtn.addEventListener('click', function() {
-    modal.style.display = 'none';
+    modal.close();
   });
 
-  // Prevent closing modal by clicking outside
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      // Do nothing - force user to click the button
-      return;
-    }
+  // Prevent closing modal via Escape key
+  modal.addEventListener('cancel', function(e) {
+    e.preventDefault();
   });
 });
 
