@@ -136,29 +136,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
   pumpyObserver.observe(pricingSection);
 
+  // Talking and bounce state
+  var talkInterval = null;
+  var isBouncing = false;
+
+  function startTalking() {
+    var talkFrame = false;
+    setActive(pumpyOpen);
+    talkInterval = setInterval(function() {
+      talkFrame = !talkFrame;
+      setActive(talkFrame ? pumpyIdle : pumpyOpen);
+    }, 400);
+  }
+
+  function stopTalking() {
+    if (talkInterval) {
+      clearInterval(talkInterval);
+      talkInterval = null;
+    }
+    setActive(pumpyIdle);
+  }
+
   // Hover interactions
   pumpy.addEventListener('mouseenter', function() {
-    const activeImage = pumpy.querySelector('.pumpy-image.pumpy-active');
-    setActive(pumpyOpen);
+    if (isBouncing) return;
+    startTalking();
   });
 
   pumpy.addEventListener('mouseleave', function() {
-    setActive(pumpyIdle);
+    if (isBouncing) return;
+    stopTalking();
   });
 
-  // Click interaction - bounce twice and show contextual message
+  // Click interaction - bounce and show contextual message
   pumpy.addEventListener('click', function() {
-    const activeImage = pumpy.querySelector('.pumpy-image.pumpy-active');
+    var activeImage = pumpy.querySelector('.pumpy-image.pumpy-active');
+    if (!activeImage) return;
 
-    // Add bounce animation
+    stopTalking();
+    isBouncing = true;
     activeImage.classList.add('pumpy-bouncing');
 
-    // Remove bounce class after animation ends
     setTimeout(function() {
       activeImage.classList.remove('pumpy-bouncing');
+      isBouncing = false;
+      if (pumpy.matches(':hover')) {
+        startTalking();
+      } else {
+        setActive(pumpyIdle);
+      }
     }, 800);
 
-    // Show contextual message based on visible section
     showContextualMessage();
   });
 
@@ -192,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (heroRect.top < window.innerHeight / 2 && heroRect.bottom > window.innerHeight / 2) {
       message = "Check out our amazing features!";
     } else if (socialRect.top < window.innerHeight / 2 && socialRect.bottom > window.innerHeight / 2) {
-      message = "See what investors say!";
+      message = "See what our investors say!";
     } else if (pricingRect.top < window.innerHeight / 2 && pricingRect.bottom > window.innerHeight / 2) {
       message = "Ready to pump your money? 📈";
     } else if (teamRect.top < window.innerHeight / 2 && teamRect.bottom > window.innerHeight / 2) {
@@ -207,11 +235,10 @@ document.addEventListener('DOMContentLoaded', function() {
     messageDiv.style.opacity = '1';
     messageDiv.style.pointerEvents = 'auto';
 
-    // Hide bubble after 3 seconds
+    // Clear inline styles so CSS hover rule takes over again
     setTimeout(function() {
-      messageDiv.style.opacity = '0';
-      messageDiv.style.pointerEvents = 'none';
-      // Reset bubble text for next hover
+      messageDiv.style.opacity = '';
+      messageDiv.style.pointerEvents = '';
       pumpyBubble.textContent = "Hey! I'm Pumpy! 🚀 Ready to go to the moon?";
     }, 3000);
   }
