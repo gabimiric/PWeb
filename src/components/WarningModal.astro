@@ -1,0 +1,54 @@
+---
+---
+
+<dialog id="warningModal">
+  <article>
+    <h2>⚠️ SATIRE WARNING ⚠️</h2>
+    <p>This website is a <strong>JOKE</strong> and parody of cryptocurrency scams.</p>
+    <p><strong>DO NOT</strong> send any money or cryptocurrency to anyone.</p>
+    <p>This is purely educational and satirical in nature.</p>
+    <footer>
+      <button id="acknowledgeBtn" class="btn-primary">I Understand, This is a Joke</button>
+      <div class="modal-slider-wrapper">
+        <p class="slider-hint">Slide to confirm you understand</p>
+        <input type="range" id="acknowledgeSlider" min="0" max="100" value="0" class="modal-slider" />
+      </div>
+    </footer>
+  </article>
+</dialog>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('warningModal');
+    const acknowledgeBtn = document.getElementById('acknowledgeBtn');
+    const acknowledgeSlider = document.getElementById('acknowledgeSlider');
+
+    if (modal) {
+      modal.showModal();
+
+      if (acknowledgeBtn) {
+        acknowledgeBtn.addEventListener('click', function() {
+          modal.close();
+        });
+      }
+
+      if (acknowledgeSlider) {
+        acknowledgeSlider.addEventListener('input', function() {
+          if (parseInt(this.value) >= 95) {
+            modal.close();
+          }
+        });
+
+        acknowledgeSlider.addEventListener('change', function() {
+          if (parseInt(this.value) < 95) {
+            this.value = 0;
+          }
+        });
+      }
+
+      modal.addEventListener('cancel', function(e) {
+        e.preventDefault();
+      });
+    }
+  });
+</script>

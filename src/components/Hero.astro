@@ -1,0 +1,67 @@
+---
+interface Props {
+  title: string;
+  tagline: string;
+  disclaimer: string;
+  stats: Array<{ value: string; label: string }>;
+  features: Array<{ emoji: string; title: string; description: string }>;
+  ctaText: string;
+}
+
+const { title, tagline, disclaimer, stats, features, ctaText } = Astro.props;
+---
+
+<section id="hero" class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="glitch" data-text={title}>{title}</h1>
+      <p class="tagline">{tagline}</p>
+      <p class="disclaimer">{disclaimer}</p>
+
+      <div class="hero-stats">
+        {stats.map((stat) => (
+          <div class="stat">
+            <div class="stat-value">{stat.value}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="hero-text">
+        <h2>Why PumpCoin is "Better" Than Bitcoin</h2>
+        <ul class="features">
+          {features.map((feature) => (
+            <li>
+              <strong>{feature.emoji} {feature.title}</strong> - {feature.description}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <a href="#pricing" class="btn-cta" role="button">{ctaText}</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Section fade-in animation
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('section').forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(section);
+  });
+</script>
