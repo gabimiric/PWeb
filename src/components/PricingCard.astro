@@ -1,0 +1,31 @@
+---
+interface Props {
+  tier: string;
+  price: string;
+  features: string[];
+  cta: string;
+  featured?: boolean;
+  icon?: string;
+}
+
+const { tier, price, features, cta, featured = false, icon } = Astro.props;
+---
+
+<article class={`pricing-card ${featured ? 'featured' : ''}`}>
+  {featured && <div class="badge">MOST POPULAR</div>}
+  {icon && (
+    <div class="pricing-icon">
+      <img src={icon} alt={tier} />
+    </div>
+  )}
+  <div class="card-header">
+    <h3>{tier}</h3>
+  </div>
+  <div class="price">{price}</div>
+  <ul class="features-list">
+    {features.map((feature) => (
+      <li>{feature}</li>
+    ))}
+  </ul>
+  <a href="#pricing" class="btn-invest">{cta}</a>
+</article>
