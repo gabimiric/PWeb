@@ -1,0 +1,27 @@
+{
+  "name": "pweb",
+  "version": "1.0.0",
+  "description": "A satirical landing page parodying cryptocurrency scams and pump-and-dump schemes. Created for educational purposes.",
+  "main": "script.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabimiric/PWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gabimiric/PWeb/issues"
+  },
+  "homepage": "https://github.com/gabimiric/PWeb#readme",
+  "dependencies": {
+    "@picocss/pico": "^2.1.1",
+    "astro": "^5.18.1"
+  }
+}
