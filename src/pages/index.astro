@@ -1,0 +1,150 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import WarningModal from '../components/WarningModal.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Testimonial from '../components/Testimonial.astro';
+import PricingCard from '../components/PricingCard.astro';
+import TeamMember from '../components/TeamMember.astro';
+import FAQItem from '../components/FAQItem.astro';
+
+// Load all collections
+const homeData = await getCollection('home');
+const testimonials = await getCollection('testimonials');
+const pricing = await getCollection('pricing');
+const team = await getCollection('team');
+const faq = await getCollection('faq');
+
+// Get home content
+const homeContent = homeData[0];
+const homeProps = homeContent.data;
+---
+
+<Layout title="PumpCoin - Satirical Crypto Landing Page">
+  <WarningModal />
+  <Navbar />
+
+  <Hero
+    title={homeProps.title}
+    tagline={homeProps.tagline}
+    disclaimer={homeProps.disclaimer}
+    stats={homeProps.stats}
+    features={homeProps.features}
+    ctaText={homeProps.ctaText}
+  />
+
+  <!-- Social Proof Section -->
+  <section id="social-proof" class="social-proof">
+    <div class="container">
+      <h2>What Our "Investors" Are Saying</h2>
+      <div class="grid testimonials">
+        {testimonials.map((testimonial) => (
+          <Testimonial
+            quote={testimonial.data.quote}
+            author={testimonial.data.author}
+            role={testimonial.data.role}
+            stars={testimonial.data.stars}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2>Investment Packages</h2>
+      <p class="section-subtitle">Choose Your Level of Financial Commitment to the Bit</p>
+
+      <div class="grid pricing-cards">
+        {pricing.map((tier) => (
+          <PricingCard
+            tier={tier.data.tier}
+            price={tier.data.price}
+            features={tier.data.features}
+            cta={tier.data.cta}
+            featured={tier.data.tier === 'TO THE MOON'}
+            icon={`/${tier.data.tier === 'PUMPER' ? 'src/pumper.jpg' : tier.data.tier === 'TO THE MOON' ? 'src/moon.jpg' : 'src/diamond.jpg'}`}
+          />
+        ))}
+      </div>
+
+      <p class="pricing-note">*** All "investments" are final and non-refundable because they're not real investments ***</p>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="team">
+    <div class="container">
+      <h2>Meet Our "Expert" Team</h2>
+      <p class="section-subtitle">Highly Qualified Individuals Who Definitely Know What They're Doing</p>
+
+      <div class="grid team-grid">
+        {team.map((member) => (
+          <TeamMember
+            name={member.data.name}
+            role={member.data.role}
+            bio={member.data.bio}
+            image={member.data.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-list">
+        {faq.map((item) => (
+          <FAQItem
+            question={item.data.question}
+            answer={item.data.answer}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="grid footer-content">
+        <div class="footer-section">
+          <h4>🚀 PumpCoin</h4>
+          <p>A Satirical Project</p>
+          <p class="warning-text">⚠️ This is not real. Do not send money to anyone.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Legal Disclaimer</h4>
+          <p>This website is a parody and educational project.</p>
+          <p>Not financial advice. Not investment advice.</p>
+          <p>Seriously, this is all a joke.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.ftc.gov/articles/what-you-should-know-about-cryptocurrency-and-scams" target="_blank">FTC: Crypto Scams</a></li>
+            <li><a href="https://www.investopedia.com/terms/p/pump-and-dump.asp" target="_blank">Understanding Pump and Dump</a></li>
+            <li><a href="https://bitcoin.org" target="_blank">Learn About Bitcoin</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 PumpCoin Satire Project. Not affiliated with any real cryptocurrency.</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  // Easter egg: console message
+  console.log('%c🚀 PUMPCOIN 🚀', 'color: #ff6b35; font-size: 24px; font-weight: bold;');
+  console.log('%cThis is a SATIRICAL project.', 'color: #ff3366; font-size: 16px;');
+  console.log('%cNever invest in something you don\'t understand!', 'color: #00d9ff; font-size: 14px;');
+  console.log('%cAlways research before investing in any cryptocurrency.', 'color: #a0a0a0; font-size: 12px;');
+</script>
