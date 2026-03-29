@@ -5,4 +5,6 @@ node_modules/
 package-lock.json
 dist/
 .astro/
+public/uploads/
+src/uploads/
 
