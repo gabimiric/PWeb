@@ -1,5 +1,5 @@
 ---
-title: PUMPACOIN
+title: PUMPCOIN
 tagline: The Revolutionary Crypto That Will Definitely Make You Rich*
 disclaimer: "*Results not guaranteed, typical, or even possible"
 stats:
