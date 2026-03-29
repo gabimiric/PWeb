@@ -1,6 +1,5 @@
 ---
-// Admin page for Decap CMS
-// Access at /admin on your live site
+// Redirect /admin to the static CMS page.
 ---
 
 <!DOCTYPE html>
@@ -9,11 +8,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>PumpCoin CMS</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <meta http-equiv="refresh" content="0; url=/admin/index.html" />
+    <title>Redirecting to CMS...</title>
   </head>
   <body>
-    <!-- Decap CMS will render here -->
-    <script src="https://unpkg.com/decap-cms@^3.3.5/dist/decap-cms.js"></script>
+    <p>Redirecting to the CMS...</p>
+    <script is:inline>
+      window.location.replace('/admin/index.html');
+    </script>
   </body>
 </html>
