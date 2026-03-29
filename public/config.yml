@@ -5,7 +5,7 @@ backend:
   auth_type: implicit
   app_id: Ov23lizuj0X0y2jMtDsA
 
-local_backend: true
+local_backend: false
 
 media_folder: public/uploads
 public_path: /uploads
