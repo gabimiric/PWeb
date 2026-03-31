@@ -2,7 +2,8 @@ backend:
   name: github
   repo: gabimiric/PWeb
   branch: main
-  auth_type: implicit
+  base_url: https://pumpcoin.vercel.app
+  auth_endpoint: /api/auth/callback
   app_id: Ov23lizuj0X0y2jMtDsA
 
 local_backend: false
@@ -49,7 +50,14 @@ collections:
       - { label: Quote, name: quote, widget: string, required: true }
       - { label: Author, name: author, widget: string, required: true }
       - { label: Role, name: role, widget: string, required: true }
-      - { label: Stars, name: stars, widget: number, min: 1, max: 5, required: true }
+      - {
+          label: Stars,
+          name: stars,
+          widget: number,
+          min: 1,
+          max: 5,
+          required: true,
+        }
 
   - name: pricing
     label: Pricing Tiers
@@ -82,7 +90,13 @@ collections:
       - { label: Name, name: name, widget: string, required: true }
       - { label: Role, name: role, widget: string, required: true }
       - { label: Bio, name: bio, widget: text, required: true }
-      - { label: Photo, name: image, widget: image, required: false, allow_multiple: false }
+      - {
+          label: Photo,
+          name: image,
+          widget: image,
+          required: false,
+          allow_multiple: false,
+        }
 
   - name: faq
     label: FAQ
