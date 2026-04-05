@@ -1,0 +1,99 @@
+backend:
+  name: github
+  repo: gabimiric/PWeb
+  branch: main
+  base_url: http://localhost:3000/
+  auth_endpoint: /api/auth/callback
+  app_id: YOUR_LOCAL_GITHUB_OAUTH_APP_ID
+
+local_backend: false
+
+media_folder: public/uploads
+public_path: /uploads
+
+collections:
+  - name: home
+    label: Home Section
+    folder: src/content/home
+    format: frontmatter
+    create: false
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Tagline, name: tagline, widget: string }
+      - { label: Disclaimer, name: disclaimer, widget: string }
+      - label: Stats
+        name: stats
+        widget: list
+        fields:
+          - { label: Value, name: value, widget: string }
+          - { label: Label, name: label, widget: string }
+      - label: Features
+        name: features
+        widget: list
+        fields:
+          - { label: Emoji, name: emoji, widget: string }
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+      - { label: CTA Text, name: ctaText, widget: string }
+
+  - name: testimonials
+    label: Testimonials
+    folder: src/content/testimonials
+    extension: yaml
+    format: yml
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Quote, name: quote, widget: string, required: true }
+      - { label: Author, name: author, widget: string, required: true }
+      - { label: Role, name: role, widget: string, required: true }
+      - { label: Stars, name: stars, widget: number, min: 1, max: 5, required: true }
+
+  - name: pricing
+    label: Pricing Tiers
+    folder: src/content/pricing
+    extension: yaml
+    format: yml
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Tier Name, name: tier, widget: string, required: true }
+      - { label: Price, name: price, widget: string, required: true }
+      - label: Features
+        name: features
+        widget: list
+        field: { label: Feature, name: feature, widget: string }
+      - { label: CTA Text, name: cta, widget: string, required: true }
+
+  - name: team
+    label: Team Members
+    folder: src/content/team
+    extension: yaml
+    format: yml
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Name, name: name, widget: string, required: true }
+      - { label: Role, name: role, widget: string, required: true }
+      - { label: Bio, name: bio, widget: text, required: true }
+      - { label: Photo, name: image, widget: image, required: false, allow_multiple: false }
+
+  - name: faq
+    label: FAQ
+    folder: src/content/faq
+    extension: yaml
+    format: yml
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Question, name: question, widget: string, required: true }
+      - { label: Answer, name: answer, widget: text, required: true }

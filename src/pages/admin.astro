@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>PumpCoin CMS</title>
-    <script>window.CMS_MANUAL_INIT = true;</script>
-    <script src="https://unpkg.com/decap-cms@^3.3.5/dist/decap-cms.js"></script>
+    <script is:inline>window.CMS_MANUAL_INIT = true;</script>
+    <script is:inline src="https://unpkg.com/decap-cms@^3.3.5/dist/decap-cms.js"></script>
     <style>
       html, body {
         height: 100%;
@@ -16,8 +16,7 @@
     </style>
   </head>
   <body>
-    <!-- Decap CMS Admin Panel -->
-    <script>
+    <script is:inline>
       const isLocalhost = ['localhost', '127.0.0.1', '0.0.0.0'].includes(window.location.hostname);
       const configUrl = isLocalhost ? '/config.local.yml' : '/config.yml';
       const link = document.createElement('link');

@@ -8,3 +8,9 @@ dist/
 public/uploads/
 src/uploads/
 
+.env.local
+.env*.local
+.vercel/
+
+DECAP_CMS_SETUP.md
+public/config.local.yml

@@ -5,6 +5,7 @@
   "main": "script.js",
   "scripts": {
     "dev": "astro dev",
+    "dev:vercel": "npx vercel dev",
     "build": "astro build",
     "preview": "astro preview"
   },
@@ -20,6 +21,7 @@
     "url": "https://github.com/gabimiric/PWeb/issues"
   },
   "homepage": "https://github.com/gabimiric/PWeb#readme",
+  "packageManager": "npm@10",
   "dependencies": {
     "@picocss/pico": "^2.1.1",
     "astro": "^5.18.1"
