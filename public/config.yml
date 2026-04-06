@@ -76,6 +76,13 @@ collections:
         widget: list
         field: { label: Feature, name: feature, widget: string }
       - { label: CTA Text, name: cta, widget: string, required: true }
+      - {
+          label: Hidden,
+          name: hidden,
+          widget: boolean,
+          default: false,
+          required: false,
+        }
 
   - name: team
     label: Team Members

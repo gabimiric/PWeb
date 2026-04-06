@@ -38,7 +38,8 @@ const pricingCollection = defineCollection({
     tier: z.string(),
     price: z.string(),
     features: z.array(z.string()),
-    cta: z.string()
+    cta: z.string(),
+    hidden: z.boolean().optional().default(false)
   })
 });
 

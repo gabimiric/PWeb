@@ -58,7 +58,9 @@ const homeProps = homeContent.data;
       <p class="section-subtitle">Choose Your Level of Financial Commitment to the Bit</p>
 
       <div class="grid pricing-cards">
-        {pricing.map((tier) => (
+        {pricing
+          .filter((tier) => !tier.data.hidden)
+          .map((tier) => (
           <PricingCard
             tier={tier.data.tier}
             price={tier.data.price}
