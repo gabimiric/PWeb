@@ -1,10 +1,10 @@
-tier: "DIAMOND BALLER"
-price: "$LOTS"
+tier: DIAMOND BALLER
+price: $LOTS
 features:
-  - "✅ All previous benefits"
-  - "✅ Personal thank you (in spirit)"
-  - "✅ Lifetime membership to disappointment"
-  - "✅ A cool story for parties"
-  - "❌ Definitely no returns"
-cta: "INVEST NOW"
-hidden: false
+  - ✅ All previous benefits
+  - ✅ Personal thank you (in spirit)
+  - ✅ Lifetime membership to disappointment
+  - ✅ A cool story for parties
+  - ❌ Definitely no returns
+cta: INVEST NOW
+hidden: true
